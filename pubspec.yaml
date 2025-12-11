@@ -1,0 +1,52 @@
+name: myapp
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  # CORRECCIÓN: Ajustado a una versión de SDK estable y realista.
+  # Esto asegura que `pub get` funcione correctamente.
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.22.0' # Opcional: Especificar la versión mínima de Flutter
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # --- FIREBASE (CORE & SERVICES) ---
+  # CORRECCIÓN: Actualizado a las últimas versiones estables. ¡MUY IMPORTANTE!
+  firebase_core: ^4.2.1
+  firebase_auth: ^6.1.2
+  cloud_firestore: ^6.1.0
+
+  # --- GESTIÓN DE ESTADO ---
+  provider: ^6.1.2 # Versión actualizada
+
+  # --- UI & ESTILO ---
+  google_fonts: ^6.2.1 # Versión actualizada
+  cupertino_icons: ^1.0.8
+  # CORRECCIÓN: Añadido el caret (^) para permitir actualizaciones.
+  lucide_icons: ^0.257.0 # Versión muy actualizada
+
+  # --- UTILIDADES ---
+  intl: ^0.20.2 # Versión estable común
+  uuid: ^4.4.0   # Versión actualizada
+  # AÑADIDO: Necesario para métodos de extensión de colecciones como `firstWhereOrNull`.
+  collection: ^1.18.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # Lints recomendados para buenas prácticas de código.
+  flutter_lints: ^6.0.0 # Versión estable común
+
+flutter:
+  uses-material-design: true
+
+  # SUGERENCIA: Si planeas usar imágenes locales en el futuro,
+  # descomenta esta sección y añade tus rutas.
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/

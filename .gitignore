@@ -1,0 +1,20 @@
+
+# Dart & Flutter
+.dart_tool/
+.packages
+.pub-cache/
+build/
+
+# IDEs
+.idea/
+.vscode/
+
+# Sensitive Files
+lib/firebase_options.dart
+android/app/google-services.json
+
+# Misc
+*.lock
+*.log
+.DS_Store
+  
