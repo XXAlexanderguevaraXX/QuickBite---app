@@ -248,8 +248,8 @@ class _HeroBanner extends StatelessWidget {
               ),
               child: const CircleAvatar(
                 radius: 70,
-                backgroundImage: AssetImage(
-                  'assets/images/family_box.png',
+                backgroundImage: NetworkImage(
+                  'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=300&q=80',
                 ),
               ),
             ),
