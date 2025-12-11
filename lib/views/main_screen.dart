@@ -6,7 +6,7 @@ import '../providers/app_provider.dart';
 import '../components/custom_bottom_nav.dart';
 import '../models/models.dart';
 
-// Importamos todas las vistas que va a manejar
+// Importamos TODAS las vistas que ya hemos refactorizado.
 import 'home_view.dart';
 import 'menu_view.dart';
 import 'rewards_view.dart';
@@ -16,25 +16,27 @@ import 'checkout_view.dart';
 import 'history_view.dart';
 import 'settings_view.dart';
 import 'product_detail_view.dart';
+import 'order_status_view.dart'; // <-- ASEGÚRATE DE QUE ESTA IMPORTACIÓN ESTÉ AQUÍ
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
-  // Este es el mapa "cerebro" de la navegación.
-  // Cada AppView apunta a su widget correspondiente.
   static final Map<AppView, Widget> _viewMap = {
-    // --- Vistas del Bottom Nav ---
+    // Vistas del Bottom Nav
     AppView.home: const HomeView(),
     AppView.menu: const MenuView(),
     AppView.rewards: const RewardsView(),
     AppView.cart: const CartView(),
     AppView.profile: const ProfileView(),
 
-    // --- Vistas secundarias a las que se navega ---
+    // Vistas secundarias
     AppView.checkout: const CheckoutView(),
     AppView.history: const HistoryView(),
     AppView.settings: const SettingsView(),
     AppView.productDetail: const ProductDetailView(),
+
+    // --- ¡AQUÍ ESTÁ LA INTEGRACIÓN FINAL! ---
+    AppView.orderStatus: const OrderStatusView(),
   };
 
   @override
@@ -70,7 +72,6 @@ class MainScreen extends StatelessWidget {
 }
 
 class _ConditionalBottomNav extends StatelessWidget {
-  // Lista de vistas que deben mostrar la barra de navegación.
   static const _viewsWithNav = {
     AppView.home,
     AppView.menu,
@@ -88,6 +89,8 @@ class _ConditionalBottomNav extends StatelessWidget {
         final cartCount = data.$2;
         final provider = context.read<AppProvider>();
 
+        // La OrderStatusView NO está en _viewsWithNav, así que el BottomNav se ocultará
+        // automáticamente, lo cual es el comportamiento deseado.
         if (!_viewsWithNav.contains(currentView)) {
           return const SizedBox.shrink();
         }

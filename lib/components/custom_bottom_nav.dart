@@ -20,8 +20,7 @@ class CustomBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-
-    // CORRECCIÓN: El diseño ahora es flotante gracias al Margin y BorderRadius.
+    
     return SafeArea(
       top: false,
       child: Container(
@@ -43,33 +42,28 @@ class CustomBottomNav extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _BottomNavItem(
-              icon: LucideIcons.home,
-              label: 'Inicio',
-              targetView: AppView.home,
-              isActive: currentView == AppView.home,
-              onTap: onViewChanged,
+              icon: LucideIcons.home, label: 'Inicio', targetView: AppView.home,
+              isActive: currentView == AppView.home, onTap: onViewChanged,
             ),
             _BottomNavItem(
-              icon: LucideIcons.layoutGrid,
-              label: 'Menú',
-              targetView: AppView.menu,
-              isActive: currentView == AppView.menu,
-              onTap: onViewChanged,
+              icon: LucideIcons.layoutGrid, label: 'Menú', targetView: AppView.menu,
+              isActive: currentView == AppView.menu, onTap: onViewChanged,
             ),
+            
+            // --- ¡AQUÍ ESTÁ EL NUEVO BOTÓN! ---
             _BottomNavItem(
-              icon: LucideIcons.shoppingBag,
-              label: 'Pedido',
-              targetView: AppView.cart,
-              isActive: currentView == AppView.cart,
-              onTap: onViewChanged,
+              icon: LucideIcons.star, label: 'Puntos', targetView: AppView.rewards,
+              isActive: currentView == AppView.rewards, onTap: onViewChanged,
+            ),
+            
+            _BottomNavItem(
+              icon: LucideIcons.shoppingBag, label: 'Pedido', targetView: AppView.cart,
+              isActive: currentView == AppView.cart, onTap: onViewChanged,
               badgeCount: cartCount,
             ),
             _BottomNavItem(
-              icon: LucideIcons.user,
-              label: 'Perfil',
-              targetView: AppView.profile,
-              isActive: currentView == AppView.profile,
-              onTap: onViewChanged,
+              icon: LucideIcons.user, label: 'Perfil', targetView: AppView.profile,
+              isActive: currentView == AppView.profile, onTap: onViewChanged,
             ),
           ],
         ),
@@ -87,12 +81,8 @@ class _BottomNavItem extends StatelessWidget {
   final int badgeCount;
 
   const _BottomNavItem({
-    required this.icon,
-    required this.label,
-    required this.targetView,
-    required this.isActive,
-    required this.onTap,
-    this.badgeCount = 0,
+    required this.icon, required this.label, required this.targetView,
+    required this.isActive, required this.onTap, this.badgeCount = 0,
   });
 
   @override
@@ -111,24 +101,17 @@ class _BottomNavItem extends StatelessWidget {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                Icon(icon,
-                    size: 24, color: isActive ? activeColor : inactiveColor),
+                Icon(icon, size: 24, color: isActive ? activeColor : inactiveColor),
                 if (badgeCount > 0)
                   Positioned(
-                    top: -4,
-                    right: -8,
+                    top: -4, right: -8,
                     child: Container(
                       padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                          color: colorScheme.error, shape: BoxShape.circle),
-                      constraints:
-                          const BoxConstraints(minWidth: 18, minHeight: 18),
+                      decoration: BoxDecoration(color: colorScheme.error, shape: BoxShape.circle),
+                      constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
                       child: Text(
                         '$badgeCount',
-                        style: TextStyle(
-                            color: colorScheme.onError,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: colorScheme.onError, fontSize: 10, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -138,10 +121,7 @@ class _BottomNavItem extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               label,
-              style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-                  color: isActive ? activeColor : inactiveColor),
+              style: TextStyle(fontSize: 11, fontWeight: isActive ? FontWeight.bold : FontWeight.normal, color: isActive ? activeColor : inactiveColor),
             ),
           ],
         ),
